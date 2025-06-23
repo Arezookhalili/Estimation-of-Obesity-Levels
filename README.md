@@ -1,208 +1,148 @@
+# 🧠 Classification of Obesity Levels Based on Eating Habits and Physical Condition
 
-# Classification of Obesity Levels Based on Eating Habits and Physical Condition Using Data Analysis
+## 🔍 Project Summary
 
-## Project Overview
+**Project Type:** Supervised Multi-Class Classification  
+**Tools Used:** Python, Pandas, Scikit-learn, XGBoost, Random Forest, SHAP  
+**Best Model Accuracy:** 96.1% (XGBoost)  
+**Goal:** Predict individual obesity levels based on demographic, lifestyle, and behavioral features
 
-This project applies machine learning techniques to predict obesity levels based on various factors (such as age, gender, height, and weight) and lifestyle habits (e.g. eating patterns, exercise, smoking, and water intake).  To do so we analyze the dataset titled  ["Estimation of Obesity Levels Based on Eating Habits and Physical Condition” ](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition), and consider its
-16 features, 1 target variable and 2111 observations.  
+---
 
-### Team members 
-| Team Member | Video Links |
-| ------------------|-------------|
-| [**Arezoo Khalili**](https://github.com/Arezookhalili)| [Video link](https://drive.google.com/file/d/1R9KJtClii35X0K13XacfvGpxG0r_dh9j/view?usp=drive_link) |
-| [**Jyoti Narang**](https://github.com/drop2jyoti) | [Video Link](https://drive.google.com/drive/folders/1kZ9L8xZUXKYOCRIFD6hSeOCnnMrqTmZb) |
-| [**Kathryn Vozoris**](https://github.com/KathrynVozoris) | [Video Link]()|
-|  [**Zekiye Erdem**](https://github.com/zekiyerdem)|[Video Link](https://drive.google.com/drive/folders/1edbiriTnRMPIYdsnzrAsmYj4fHGTJP6n?usp=sharing)|
+## 🗂 Project Overview
 
+This project applies machine learning techniques to predict obesity levels based on physical characteristics (e.g., age, gender, height, weight) and lifestyle habits (e.g., exercise, diet, water intake, tech usage, smoking).  
+Dataset: [Estimation of Obesity Levels Based on Eating Habits and Physical Condition](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition)
 
-## Potential Applications for Results
+- 📊 **2111 records**
+- ⚙️ **16 features**
+- 🎯 **7 obesity classes**
 
-This project uses feature importance analysis to highlight the key factors influencing obesity.  The results found here could assist organizations in enhancing their decision-making processes. Below is a summary of such organizations and potential applications. 
+---
 
-####  Public Health Organizations: 
-Given information on which features in the dataset are the greatest predictors of obesity levels, public health professionals could craft educational campaigns focusing on the most impactful aspects.  
+## 🌐 Dataset Insights
 
-####  Health Care Providers and Practitioners:  
-The results could be used by health care professionals to monitor and manage obesity. More specifically they could be applied to help create a health recommendation system by leveraging the identified key variables related to lifestyle habits, dietary patterns, and physical conditions.  Such a system could aid in identifying at risk individuals who could then be offered interventions and support.  
+- **Synthetic + real data**: 77% synthetic via SMOTE, 23% survey-based
+- Balanced multi-class dataset
+- Target variable: `Obesity_Level`  
+  Classes:
+  - 0: Insufficient Weight
+  - 1: Normal Weight
+  - 2: Overweight Level I
+  - 3: Overweight Level II
+  - 4: Obesity Type I
+  - 5: Obesity Type II
+  - 6: Obesity Type III
 
-####  Insurance Companies
-The analysis could help in designing custom insurance policies or health premiums based on the identified obesity risks.
+👉 See [data/README.md](data/README.md) for column descriptions.
 
-## Libraries and Frameworks
+---
 
-This project will be performed using Python and Python Libraries including: 
-      <ul>
-        <li>Pandas</li>
-        <li>Numpy</li>
-        <li>Matplotlib</li>
-        <li>Scikit-Learn</li>
-        <li>seaborn</li>
-        <li>XGBoost</li>
-        <li>SHAP</li>
-      </ul>
-For more details, please see the [requirement.txt](requirement.txt) file.
+## 💡 Key Results & Insights
 
-## Dataset Information
-As this dataset is **synthetic** with all classes balanced, class imbalance is not an issue. **77% of the data** was generated synthetically using the **Weka tool** and the **SMOTE filter**, while **23% of the data** was collected directly from users through a web platform.
+- ✅ **XGBoost accuracy:** 96.1%
+- ✅ Robust performance even when excluding `height` and `weight`
+- ✅ Top features (via SHAP):
+  - Age
+  - Frequency of Vegetable Consumption
+  - Gender
+  - Water Intake
+  - Tech Use
+  - Physical Activity
+  - Number of Meals
+  - Family History
 
-The dataset contains 16 features such as family history of being overweight and consumption patterns, which we analyze here to determine their impact on obesity levels.
-Additionally, we consider how physical activity, modes of transportation, calorie monitoring and technology usage correlate with obesity across various age groups. 
+---
 
-The target variable, **Obesity Level**, represents obesity levels and includes **7 classes**, making this a **multi-class classification problem**. The classes are as follows:
+## 📊 Use Cases
 
-- Class 0: Insufficient Weight
-- Class 1: Normal Weight
-- Class 2: Overweight Level I
-- Class 3: Overweight Level II
-- Class 4: Obesity Type I
-- Class 5: Obesity Type II
-- Class 6: Obesity Type III
-  
-For more information about the dataset columns names please visit [here](data/README.md).
+| Sector | Application |
+|--------|-------------|
+| **Public Health** | Targeted education campaigns |
+| **Healthcare** | Personalized risk screening & recommendations |
+| **Insurance** | Dynamic health premiums based on predicted risk |
 
-## Methodology Outline
+---
 
-All notebooks created for the Obesity Estimation Classification can be found [here](notebooks)
+## 🔬 Methodology Summary
 
-### A.  [Exploratory Data Analysis](notebooks/Obesity_estimation_eda.ipynb)
+### A. Exploratory Data Analysis (EDA)
 
-#### 1. Data Exploration
-- Examination of  **class distribution** and **age distribution**
-- Identification of **outliers** and  **missing values**
-- Examination of the effect of specific features on obesity, such as **eating habits** and **activity levels**
-- Analysis of **correlations** between variables
+- Distribution plots (age, class, meals, etc.)
+- Outlier detection & correlation matrix
+- Box plots, bar charts, and scatter plots
+- Key insights (e.g., more women classified as obese, low % walking/biking)
 
-#### 2. **Data Cleaning**  
-Before modeling, we performed the following data cleaning steps:
-- Removal of **duplicates**
-- Handling of **outliers**
-- Checking for**missing values**
+### B. Data Cleaning
 
-#### 3. Visualizations and Observations
-- Box plots, scatter plots, bar plots, histograms 
-- Correlation analysis
-- Conclusions and summary of findings
+- Removed duplicates and outliers
+- Handled missing values
+- One-hot encoded categorical variables
+- Standardized numerical features
 
-#### 4. Key Observations 
-- We have highest number of people with Obesity_Type 1. <sup>[1](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)</sup>
-- On average most people have family history of obesity.<sup>[2](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)<sup>
-- Most people use some form of vehicles while only ~2.7% prefers walking/using bike That's concerning!
-- More females are Obese as compared to males.<sup>[3](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)</sup>
-- We noticed a relatively strong positive correlation between 'Weight' and 'Height'.<sup>[4](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)</sup>
-- Outliers are present in Age.<sup>[5](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)<sup>
+### C. Machine Learning & Modeling
 
-### B. [Machine Learning Analysis](notebooks/Obesity_estimation_feature_eng_ML.ipynb)
+- Models: Decision Tree, KNN, Random Forest, XGBoost
+- Metrics: Accuracy, Precision, Recall, F1-score
+- GridSearchCV & 5-fold cross-validation
+- Model Comparison with and without height/weight
 
-#### 1. **Preprocessing** 
-- Preparation of **categorical variables** for machine learning using **one-hot encoding**
-- Scaling of numerical features using Standard Scaler
-- Label encoding of target variable
+### D. Feature Engineering
 
+- Feature importance via SHAP & Random Forest
+- Eliminated low-impact and correlated variables
+- Created reduced feature set for model simplification
 
-#### 2. **Machine Learning Modeling**  
-- Implementation of multiple classification algorithms:
-- **Decision Tree**
-- **Random Forest**
-- **KNeighbors**
-- **XGBoost**
-- Evaluation of models using the metrics: **accuracy**, **precision**, **recall**, and **F1 score**
-   
-#### 3. Hyperparameter Tuning
-- Tuning of hyperparameters on XGBoost and Random Forest models
-- Comparison of model performances to select the best-performing model using **GridSearch**
-- Application of  **5-fold cross-validation**
+### E. Results Overview
 
-#### 4. **Feature Engineering**
-- **XGBoost, Random Forest** and **SHAP** to assess **feature importance**
-- Utilization of **correlation matrix** insight to eliminate redundant features
+| Model Version | Accuracy |
+|---------------|----------|
+| XGBoost (all features) | 96.1% |
+| Random Forest (all features) | 93.7% |
+| XGBoost (excluding height/weight) | ~93% |
+| XGBoost (top 8 features) | ~91% |
 
-#### 5. **Feature Elimination and Model Comparison** 
-- Reduction of the feature set based on **feature importance** and **correlations**
-- Comparison of performance of the models with a reduced feature set against the baseline model
+📷 [Model Comparison Image](https://github.com/user-attachments/assets/aa63819b-5b34-46d8-a177-13cf16565fc5)
 
-#### 6. **Findings and Conclusion**  
-- Summarization of key findings from the **EDA** and **ML analysis**
-- Determine the influence of various features in predicting obesity levels
-- Recommendations for future research
+---
 
+## 🚀 Future Scope
 
-### Key Observations
+- Fine-tune XGBoost on external datasets
+- Test real-world deployment on unseen samples
+- Explore explainability frameworks (e.g., LIME, SHAP UI)
+- Build a simple risk score/recommendation engine for public health use
 
-XGBoost was the highest performing model with 96.1% accuracy and Random Forest performing slightly behind it with 93.7% accuracy. Eliminating 'Height' and 'Weight' from the features to reduce bias (as these are used to calculate BMI, which is one measure of obesity) we saw only a slight drop in performance. This demonstrates the strength of the models in predicting obesity levels from the other features. A reduced feature set can be a viable option for faster inference and simpler deployment without substantial loss of accuracy.
+---
 
-The results from the **SHAP** <sup>[6](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)</sup> run on models excluding 'Height' and 'Weight' showed the following features to be the top predictors of obesity levels:
+## 🧪 Team Contributions
 
-- Age
-- Frequency of Vegetables (Freq_Veg)
-- Gender
-- Water Intake
-- Physical Activity
-- Tech Use
-- Number of Meals (Num_Meals)
- - Family History of Obesity (Yes)
+| Task | Lead | Support |
+|------|------|---------|
+| EDA | Jyoti | Arezoo |
+| Data Cleaning | Arezoo | Zekiye |
+| Encoding & Scaling | Kathryn | — |
+| ML Modeling | Zekiye | Jyoti |
+| Feature Engineering | Zekiye | Arezoo |
+| Reporting | Kathryn | All Members |
 
-For higher levels of obesity (Obesity levels I, II, and III) the following features are the main indicators in predicting obesity:
+---
 
-- Gender
-- Age
-- Water Intake
-- Tech Use
+## 🎥 Presentations
 
-Therefore, these are the features of primary importance when assessing an individual's risk of obesity. The features could be considered by institutions and public health departments looking to reduce obesity levels across populations.
+| Team Member | GitHub | Video |
+|-------------|--------|-------|
+| **Arezoo Khalili** | [Arezoo Khalili](https://github.com/Arezookhalili) | [Watch](https://drive.google.com/file/d/1R9KJtClii35X0K13XacfvGpxG0r_dh9j/view?usp=drive_link) |
+| **Jyoti Narang** | [drop2jyoti](https://github.com/drop2jyoti) | [Watch Folder](https://drive.google.com/drive/folders/1kZ9L8xZUXKYOCRIFD6hSeOCnnMrqTmZb) |
+| **Kathryn Vozoris** | [KathrynVozoris](https://github.com/KathrynVozoris) | *Not Provided* |
+| **Zekiye Erdem** | [zekiyerdem](https://github.com/zekiyerdem) | [Watch Folder](https://drive.google.com/drive/folders/1edbiriTnRMPIYdsnzrAsmYj4fHGTJP6n?usp=sharing) |
 
-### Results
+---
 
-The table below shows the performance results of the various models tested. Models run with the features 'Height' and 'Weight' eliminated are noted as '_EWH'.  Models run with 'Selected Features' were run using only the top 8 features indicated above: Age, Frequency of Vegetables, Gender, Water Intake, Physical Activity, Tech Use, Number of Meals and Family History (Yes).
+## 📁 Project Links
 
-![Model Comparison](https://github.com/user-attachments/assets/aa63819b-5b34-46d8-a177-13cf16565fc5)
-
-### Future Scope and Next Steps
-
-XGBoost is the most robust and reliable model for this dataset. It should be considered as the primary model for deployment or further analysis. Future experiments could include fine-tuning XGBoost hyperparameters and evaluating its performance on unseen test data or under real-world conditions. The models tested here performed best when run on all features. The features of highest importance were `Weight`, `Height`, `Age`, and `Freq_Veg`. Hence, in future model applications we recommend the inclusion of these key features, except in cases of computational or data collection constraints.  
-
-Lastly, we considered miscategorized data using a Confusion Matrix<sup>[7](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)</sup>.  These misclassified labels could also be the subject of further investigation.
-
-
-#### Task Allocation
-
-#### 1. **Exploratory Data Analysis (EDA)**
-   - **Lead:** Jyoti
-   - **Support:** Arezoo
-   - Tasks: Examine class and age distributions, identify outliers, explore missing values, and analyze correlations.
-
-#### 2. **Data Cleaning**
-   - **Lead:** Arezoo
-   - **Support:** Zekiye
-   - Tasks: Remove duplicates, handle outliers, and manage missing values as necessary.
-
-#### 3. **One-Hot Encoding for Categorical Variables and Scaling of Numerical Data**
-   - **Lead:** Kathryn
-   - Tasks: Prepare categorical variables for machine learning through one-hot encoding. Consider scaling options for numerical data, and apply scaler.
-
-#### 4. **Machine Learning Modeling**
-   - **Lead:** Zekiye
-   - **Support:** Jyoti
-   - Tasks: Implement Decision Tree, Random Forest, Logistic Regression, and Naive Bayes models. Evaluate and compare models on metrics (accuracy, precision, recall, F1 score, log loss).
-
-#### 5. **Feature Engineering**
-   - **Lead:** Zekiye
-   - **Support:** Arezoo
-   - Tasks: Use Random Forest for feature importance assessment and analyze correlation matrix to remove redundant features.
-
-#### 6. **Feature Elimination and Model Comparison**
-   - **Lead:** Jyoti
-   - **Support:** Kathryn
-   - Tasks: Perform feature elimination and compare model performance with a reduced feature set vs. the baseline model.
-
-#### 7. **Findings and Conclusion**
-   - **Lead:** Kathryn
-   - **Support:** All Members
-   - Tasks: Summarize key findings, draw conclusions, and compile the final report.
-
-
-### Project 
-https://github.com/users/drop2jyoti/projects/2
-
-
-[See Images indexed here](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)
+- 🗂 [GitHub Project Board](https://github.com/users/drop2jyoti/projects/2)
+- 🖼 [Image Gallery](https://github.com/drop2jyoti/Estimation-of-Obesity-Levels/blob/main/reports/Images.md)
+- 📓 [Jupyter Notebooks](notebooks)
+- 📦 [requirements.txt](requirement.txt)
 
